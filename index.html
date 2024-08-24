@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parental Control Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .chore-list {
+            text-align: left;
+            margin: 20px auto;
+        }
+        .chore-item {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Parental Control Dashboard</h1>
+        <div class="section">
+            <h2>Set Controls</h2>
+            <input type="email" id="parent-email" placeholder="Parent Email" />
+            <input type="text" id="pin" placeholder="Create PIN" />
+            <button onclick="setControls()">Set Controls</button>
+        </div>
+        <div class="section">
+            <h2>Manage Chores</h2>
+            <div id="chore-list" class="chore-list">
+                <!-- Chore items will be dynamically added here -->
+            </div>
+            <input type="text" id="new-chore" placeholder="Enter new chore" />
+            <button onclick="addChore()">Add Chore</button>
+        </div>
+        <div class="section">
+            <h2>Logs</h2>
+            <p id="log-message">No logs yet.</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to simulate setting controls
+        function setControls() {
+            const email = document.getElementById('parent-email').value;
+            const pin = document.getElementById('pin').value;
+            if (email && pin) {
+                // Simulate sending data to the server
+                console.log('Controls set with Email:', email, 'PIN:', pin);
+                alert('Controls have been set.');
+            } else {
+                alert('Please enter both email and PIN.');
+            }
+        }
+
+        // Function to add a new chore
+        function addChore() {
+            const choreInput = document.getElementById('new-chore');
+            const choreText = choreInput.value.trim();
+            if (choreText) {
+                const choreList = document.getElementById('chore-list');
+                const choreItem = document.createElement('div');
+                choreItem.className = 'chore-item';
+                choreItem.innerHTML = `<input type="checkbox" /> ${choreText}`;
+                choreList.appendChild(choreItem);
+                choreInput.value = '';
+                updateLog('Chore added: ' + choreText);
+            } else {
+                alert('Please enter a chore.');
+            }
+        }
+
+        // Function to update logs
+        function updateLog(message) {
+            const logMessage = document.getElementById('log-message');
+            logMessage.textContent = message;
+        }
+    </script>
+</body>
+</html>
+
+
+
+
